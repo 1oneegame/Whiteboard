@@ -18,18 +18,18 @@ const links = [
 function Navbar() {
   return (
     <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} 
-    className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 shadow-sm">
+    className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center p-4 shadow-sm bg-gradient-to-r from-blue-500 to-purple-600">
         <div className="flex items-center gap-4 ml-20">
           <Link href="/">
-            <motion.h2 initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={0} transition={{ duration: 0.5}} className="text-2xl font-bold text-purple-500 hover:text-purple-600 transition-colors duration-500">
+            <motion.h2 initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={0} transition={{ duration: 0.5}} className="text-2xl font-bold text-white hover:text-blue-300 transition-colors duration-500">
               <span className="flex items-center gap-2"><Presentation/>Whiteboard</span>
             </motion.h2>
           </Link>
         </div>
         <div className="flex items-center gap-8 mr-20">
           {links.map((link, index) => (
-            <Link key={link.href} href={link.href} className="text-gray-500 hover:text-gray-700 transition-colors duration-500 text-md">
-              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={index+1} transition={{ duration: 0.5, delay: 0.5 * (index+1) }} >
+            <Link key={link.href} href={link.href} className="text-white hover:text-blue-300 transition-all duration-300">
+              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={index+1} transition={{ duration: 0.5, delay: 0.5 * (index+1) }}>
                 {link.label}
               </motion.div>
             </Link>
