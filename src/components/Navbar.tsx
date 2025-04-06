@@ -1,17 +1,25 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Presentation } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Presentation, UserPlus } from "lucide-react";
 
 const links = [
   {
-    label: "About",
+    label: "О нас",
     href: "/about",
   },
   {
-    label: "Contact",
+    label: "Контакты",
     href: "/contact",
+  },
+  {
+    label: "FAQ",
+    href: "/faq",
+  },
+  {
+    label: "Профиль",
+    href: "/profile",
   },
 ];
 
@@ -34,6 +42,12 @@ function Navbar() {
               </motion.div>
             </Link>
           ))}
+          <motion.button initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={links.length+1} transition={{ duration: 0.5, delay: 0.5 * (links.length+1) }} className="bg-transparent text-white border-2 border-white font-bold py-2 px-6 rounded-lg hover:bg-white hover:text-blue-600 transition duration-300 cursor-pointer">
+            <span className="flex flex-row gap-2">
+              <UserPlus/>
+              Войти
+            </span>
+          </motion.button>
         </div>
     </motion.div>
   );
