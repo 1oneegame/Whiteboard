@@ -1,9 +1,20 @@
+'use client'
 import Link from "next/link";
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { FacebookIcon, Instagram, Twitter, Youtube } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function Footer() {
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef, { once: true });
   return (
-    <footer className="bg-black text-white py-12 mt-28">
+    <motion.footer 
+      ref={footerRef}
+      className="bg-black text-white py-12 mt-28"
+      initial={{ opacity: 0 }}
+      animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+      transition={{ delay: 0.2, duration: 0.5 }}
+    >
       <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h2 className="text-xl font-bold mb-4">Whiteboard</h2>
@@ -33,7 +44,7 @@ export default function Footer() {
           <p className="text-gray-400 mb-4">📞 +7 (707) 000-00-00</p>
           <div className="flex space-x-4">
             <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-              <Facebook size={20} />
+              <FacebookIcon size={20} />
             </Link>
             <Link href="#" className="text-gray-400 hover:text-white transition-colors">
               <Instagram size={20} />
@@ -47,6 +58,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }

@@ -37,12 +37,12 @@ function Navbar() {
         <div className="flex items-center gap-8 mr-20">
           {links.map((link, index) => (
             <Link key={link.href} href={link.href} className="text-white hover:text-blue-300 transition-all duration-300">
-              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={index+1} transition={{ duration: 0.5, delay: 0.5 * (index+1) }}>
+              <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={index+1} transition={{ duration: 0.5, delay: 0.2 * (index+1) }}>
                 {link.label}
               </motion.div>
             </Link>
           ))}
-          <motion.button initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={links.length+1} transition={{ duration: 0.5, delay: 0.5 * (links.length+1) }} className="bg-transparent text-white border-2 border-white font-bold py-2 px-6 rounded-lg hover:bg-white hover:text-blue-600 transition duration-300 cursor-pointer">
+          <motion.button initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} custom={links.length+1} transition={{ duration: 0.5, delay: 0.2 * (links.length+1) }} className="bg-transparent text-white border-2 border-white font-bold py-2 px-6 rounded-lg hover:bg-white hover:text-blue-600 transition duration-300 cursor-pointer">
             <span className="flex flex-row gap-2">
               <UserPlus/>
               Войти
