@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
-import { Eraser, Pen, SquarePen, Trash, Download } from "lucide-react";
+import { Eraser, Pen, Trash, Download } from "lucide-react";
 
 interface Position {
   x: number;
@@ -14,7 +14,6 @@ interface StrokeStyle {
   width: number;
 }
 
-// Принимаем id как параметр
 interface WhiteboardProps {
   id: string;
 }
@@ -30,8 +29,7 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
   });
   const [lastPosition, setLastPosition] = useState<Position | null>(null);
 
-  // Создаем функцию для получения ключа localStorage для данной доски
-  const getStorageKey = () => `whiteboard-data-${id}`;
+  const getStorageKey = useCallback(() => `whiteboard-data-${id}`, [id]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -46,15 +44,12 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
 
       const { width, height } = parent.getBoundingClientRect();
       
-      // Устанавливаем размеры canvas равными размерам контейнера
       canvas.width = width;
       canvas.height = height;
       
-      // Заполняем canvas белым цветом для видимости
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Восстановить содержимое после изменения размера
       const imageData = localStorage.getItem(getStorageKey());
       if (imageData) {
         const img = new Image();
@@ -65,15 +60,13 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
       }
     };
 
-    // Вызываем функцию сразу и добавляем слушатель на изменение размера окна
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    // Очищаем слушатель при размонтировании компонента
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
-  }, [id]);
+  }, [id, getStorageKey]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -82,11 +75,9 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Заполняем canvas белым цветом при инициализации
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Загрузить сохраненное содержимое при инициализации
     const imageData = localStorage.getItem(getStorageKey());
     if (imageData) {
       const img = new Image();
@@ -95,7 +86,7 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
       };
       img.src = imageData;
     }
-  }, [id]);
+  }, [id, getStorageKey]);
 
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const canvas = canvasRef.current;
@@ -149,7 +140,6 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
     saveCanvas();
   };
 
-  // Обработчики для сенсорных устройств
   const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
     e.preventDefault();
     const canvas = canvasRef.current;
@@ -212,7 +202,6 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Очищаем canvas, заполняя его белым цветом
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
@@ -223,7 +212,6 @@ const Whiteboard = ({ id }: WhiteboardProps) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    // Сохранить изображение в localStorage с уникальным ключом для данной доски
     const imageData = canvas.toDataURL("image/png");
     localStorage.setItem(getStorageKey(), imageData);
   };
