@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Board 1",
+    "collaborators": "Aizhas Serikov, Aizhas Serikov, Aizhas Serikov",
+    "image": "/images/placeholder.svg"
+  },
+  {
+    "id": 2,
+    "name": "Board 2",
+    "collaborators": "Aizhas Serikov, Aizhas Serikov, Aizhas Serikov",
+    "image": "/images/placeholder.svg"
+  },
+  {
+    "id": 3,
+    "name": "Board 3",
+    "collaborators": "Aizhas Serikov, Aizhas Serikov, Aizhas Serikov",
+    "image": "/images/placeholder.svg"
+  },
+  {
+    "id": 4,
+    "name": "Board 4",
+    "collaborators": "Aizhas Serikov, Aizhas Serikov, Aizhas Serikov",
+    "image": "/images/placeholder.svg"
+  },
+  {
+    "id": 5,
+    "name": "Board 5",
+    "collaborators": "Aizhas Serikov, Aizhas Serikov, Aizhas Serikov",
+    "image": "/images/placeholder.svg"
+  },
+  {
+    "id": 6,
+    "name": "ayzhas 5",
+    "collaborators": "aizhas serikov",
+    "image": "/images/placeholder.svg"
+  }
+]

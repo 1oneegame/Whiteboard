@@ -7,7 +7,6 @@ import { useParams } from "next/navigation";
 import Whiteboard from "@/components/Whiteboard";
 
 export default function WhiteboardPage() {
-    // Получаем id из параметров URL
     const params = useParams();
     const boardId = Array.isArray(params.id) ? params.id[0] : params.id || "default";
 
